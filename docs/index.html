@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RepoGuide — explore a public GitHub repository</title>
+  <meta name="description" content="A free, open-source prototype for exploring public GitHub repositories. No sign-in, API key or payment required.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23145745'/%3E%3Ctext x='7' y='24' font-size='23' fill='white'%3ER%3C/text%3E%3C/svg%3E">
+  <script src="core.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="./">RepoGuide</a><a href="https://github.com/ankurrana9898-boop/repoguide">Source on GitHub ↗</a></header>
+<main>
+  <p class="eyebrow">OPEN-SOURCE · EARLY PROTOTYPE</p>
+  <h1>Find your way around<br>a GitHub repository.</h1>
+  <p class="intro">See its languages, top-level files and places to start reading. Free to use, right in your browser.</p>
+  <form id="repo-form">
+    <label for="repository">Public GitHub repository</label>
+    <div class="input-row"><input id="repository" name="repository" placeholder="owner/repository" value="octocat/Hello-World" required autocomplete="off" spellcheck="false"><button type="submit">Explore repository</button></div>
+    <p class="hint">Paste a repository homepage URL or enter owner/repository. Private repositories are not supported.</p>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+  <section id="result" hidden aria-label="Repository overview"></section>
+  <section class="about"><h2>What works today</h2><p>RepoGuide reads public repository metadata from GitHub: description, default branch, language breakdown and root directory. Follow file links to explore the original source.</p><h2>Where we’re going</h2><p>Planned Claude API features include code explanations and guided onboarding. These are not implemented in this prototype. The current version uses no AI model and makes no paid API calls.</p><h2>Privacy and limits</h2><p>Your browser contacts GitHub directly. RepoGuide does not ask for credentials or save your searches. GitHub receives your requests and applies its public API limits; some repositories may be unavailable or restricted. This tool does not review the full codebase.</p></section>
+</main>
+<footer>Created by <a href="https://github.com/ankurrana9898-boop">ankurrana9898-boop</a> · MIT licensed · No payment required</footer>
+</body></html>
