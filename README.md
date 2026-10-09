@@ -8,6 +8,7 @@ A free, open-source browser tool for exploring public GitHub repositories.
 - View its description, default branch, language breakdown and root files.
 - Find README, contributing, license, documentation, example and test entry points.
 - Follow links to the original repository.
+- Download a Markdown onboarding report to keep or share.
 - No dependencies, sign-in, API key or paid API calls.
 
 **Status:** early prototype. This version uses GitHub's public API, not an AI model. Claude explanations and guided onboarding are planned, not implemented. No claims of existing customers, funding or startup-program acceptance are made.
@@ -26,15 +27,17 @@ Open http://localhost:8000. Alternatively, use any static web server.
 
 In repository Settings → Pages, select **Deploy from a branch**, choose **main** and **/docs**, and save. For a public repository on GitHub Free, branch-based Pages publishing is free.
 
-Expected address after deployment: https://ankurrana9898-boop.github.io/repoguide/
+Live prototype: https://repoguide-ankur.mooo.com/
 
-This is an expected URL, not confirmation of deployment. A `github.io` site does not include a matching email mailbox.
+Website hosting does not include a matching email mailbox.
 
 ## Validation
 
 ```sh
 node --test tests/core.test.cjs
 ```
+
+GitHub Actions runs these tests and JavaScript syntax checks on every push and pull request. No package installation or paid service is required.
 
 ## Privacy and limitations
 
