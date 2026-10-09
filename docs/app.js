@@ -49,6 +49,19 @@ form.addEventListener('submit', async event => {
     }
     result.append(list);
     if (!contents.length) result.append(element('p', 'This repository has no files yet.'));
+    const download = element('button', 'Download Markdown report');
+    download.type = 'button';
+    download.addEventListener('click', () => {
+      const url = URL.createObjectURL(new Blob([RepoGuide.toMarkdown(data)], {type: 'text/markdown;charset=utf-8'}));
+      const link = element('a');
+      link.href = url;
+      link.download = parsed.repo + '-repoguide.md';
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    result.append(download);
     result.hidden = false;
     status.textContent = 'Overview ready. Language percentages are based on code bytes, not file counts.';
   } catch (error) {
