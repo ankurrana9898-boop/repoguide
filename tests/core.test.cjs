@@ -1,6 +1,6 @@
 const {test} = require('node:test');
 const assert = require('node:assert/strict');
-const {parseRepository, summarize} = require('../docs/core.js');
+const {parseRepository, summarize, toMarkdown} = require('../docs/core.js');
 test('accepts names and HTTPS repository URLs', () => {
   assert.equal(parseRepository(' octocat/Hello-World ').fullName, 'octocat/Hello-World');
   assert.equal(parseRepository('https://github.com/octocat/Hello-World.git/').repo, 'Hello-World');
@@ -18,4 +18,15 @@ test('handles empty repositories and empty language data', () => {
   const data = summarize({full_name:'a/b',default_branch:'main'}, {}, []);
   assert.deepEqual(data.languages, []);
   assert.deepEqual(data.files, []);
+});
+test('exports a readable report and escapes untrusted Markdown and HTML', () => {
+  const data = summarize({full_name:'a/b',description:'<script>\n[click](bad)',default_branch:'main',archived:true}, {JavaScript:10}, [{name:'README.md'}]);
+  const report = toMarkdown(data);
+  assert.ok(report.includes('JavaScript 100%'));
+  assert.ok(report.includes('main (archived)'));
+  assert.ok(report.includes('- README.md'));
+  assert.ok(!report.includes('<script>'));
+  assert.ok(!report.includes('[click]'));
+  assert.ok(report.includes('does not analyze source code or use AI'));
+  assert.ok(toMarkdown(summarize({full_name:'a/b',default_branch:'main'}, {}, [])).includes('None available'));
 });
